@@ -6,9 +6,11 @@ const bodyParser = require("body-parser"); // Import body-parser
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable or default port
+const staticMiddleware = express.static("public"); // Path to the public folder
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // For form data handling
+app.use(staticMiddleware); // Mount the static middleware
 const validateBook = require("./middlewares/validateBook");
 
 app.get("/books", booksController.getAllBooks);
